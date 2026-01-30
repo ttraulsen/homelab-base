@@ -14,5 +14,7 @@ done
 echo "==> Kubernetes installation"
 sudo bash "$SCRIPT_DIR/k8s/install-k3s.sh"
 sudo bash "$SCRIPT_DIR/k8s/post-install.sh"
+echo ">>> Setting up StorageClass"
+sudo bash "$SCRIPT_DIR/k8s/10-storageclass.sh"
 
 echo "==> Bootstrap completed successfully"

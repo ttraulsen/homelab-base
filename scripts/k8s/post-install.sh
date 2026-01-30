@@ -1,8 +1,19 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo "Post-install Kubernetes setup"
+echo "==> Configuring kubeconfig"
 
-mkdir -p /root/.kube
-cp /etc/rancher/k3s/k3s.yaml /root/.kube/config
-chmod 600 /root/.kube/config
+K3S_KUBECONFIG="/etc/rancher/k3s/k3s.yaml"
+KUBECONFIG_PATH="$HOME/.kube/config"
+
+mkdir -p "$(dirname "$KUBECONFIG_PATH")"
+cp "$K3S_KUBECONFIG" "$KUBECONFIG_PATH"
+chmod 600 "$KUBECONFIG_PATH"
+
+export KUBECONFIG="$KUBECONFIG_PATH"
+
+echo "==> Validating cluster"
+kubectl get nodes
+kubectl get pods -A
+
+echo "==> k3s installation and post-configuration done"
