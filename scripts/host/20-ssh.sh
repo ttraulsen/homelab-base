@@ -8,7 +8,7 @@ CONF_FILE="$SSHD_DIR/99-homelab.conf"
 
 mkdir -p "$SSHD_DIR"
 
-install -m 644 "$(dirname "$0")/sshd.conf.d/99-homelab.conf" "$CONF_FILE"
+install -m 644 "$(dirname "$0")/ssh.conf.d/99-homelab.conf" "$CONF_FILE"
 
 echo "Validating SSH configuration"
 sshd -t
