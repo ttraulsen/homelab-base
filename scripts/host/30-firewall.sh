@@ -17,9 +17,8 @@ ufw allow 22/tcp comment 'SSH access'
 echo "allow k3s"
 ufw allow 6443/tcp comment 'k3s API server'
 
-# Optional: ICMP (Ping)
-echo "allow ping"
-ufw allow proto icmp comment 'Allow ping'
+ufw allow 80/tcp comment 'HTTP'
+ufw allow 443/tcp comment 'HTTPS'
 
 ufw --force enable
 
