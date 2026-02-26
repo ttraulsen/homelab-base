@@ -11,20 +11,15 @@ echo "[sops] setting up sops configuration"
 # 1. sops installieren
 if ! command -v sops >/dev/null 2>&1; then
   echo "[sops] installing sops"
+
   LATEST_RELEASE=$(curl -s https://api.github.com/repos/getsops/sops/releases/latest | grep '"browser_download_url":' | grep 'amd64.deb' | grep -vE '(\.pem|\.sig)' | grep -o 'https://[^"]*') 
   LATEST_FILE=$(basename "$LATEST_RELEASE")
 
   # Download the binary
   curl -LO $LATEST_RELEASE
 
-  # remove old versions
-  sudo rm -f /usr/local/bin/sops
-
-  # Move the binary in to your PATH
-  sudo mv $LATEST_FILE /usr/local/bin/sops
-
-  # Make the binary executable
-  chmod +x /usr/local/bin/sops
+  # Install the binary
+  sudo dpkg -i $LATEST_FILE
 else
   echo "[sops] sops already installed"
 fi
