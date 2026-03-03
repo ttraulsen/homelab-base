@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wc -l /Users/timotraulsen/projects/private/homelab/homelab-base/docs/operations/*.md)"
+    ]
+  }
+}
